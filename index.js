@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 const fs = require("fs");
+const axios = require("axios");
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -17,7 +18,7 @@ inquirer
         },
         {
             type: "input",
-            message: "What is your Table of Contents",
+            message: "What is your Table of Contents?",
             name: "userTOC"
         },
         {
@@ -47,40 +48,46 @@ inquirer
         },
         {
             type: "input",
-            message: "What is your Questions?",
-            name: "userQuestions"
-        },
-        {
-            type: "input",
-            message: "What is your GitHub profile name?",
+            message: "What is your GitHub username?",
             name: "userGithub"
         },
     ])
     .then(function (response) {
-        console.log(response);
+        const userGithub = response.userGithub;
+        const userTitle = response.userTitle;
+        const userDescription = response.userDescription;
+        const userTOC = response.userTOC;
+        const userInstallation = response.userInstallation;
+        const userUsage = response.userUsage;
+        const userLicense = response.userLicense;
+        const userContributing = response.userContributing;
+        const userTests = response.userTests;
 
-        let renderReadME = 
-`# Project Title:  \n
-${response.userTitle}  \n
+        axios
+            .get(`https://api.github.com/users/${userGithub}`)
+            .then(function (response) {
+
+                let renderReadME = 
+`# Project Title: ${userTitle}  \n
 ## Project Description:  \n
-${response.userDescription}  \n
+${userDescription}  \n
 ## Table of Contents:  \n
-${response.userTOC}  \n
+${userTOC}  \n
 ## Installation:  \n
-${response.userInstallation}  \n
+${userInstallation}  \n
 ## Usage:  \n
-${response.userUsage}  \n
+${userUsage}  \n
 ## License:  \n
-${response.userLicense}  \n
-## Contributing:  \n
-${response.userContributing}  \n
+${userLicense}  \n
+## Contributing Users:  \n
+${userContributing}  \n
 ## Tests:  \n
-${response.userTests}  \n
-## Questions:  \n
-${response.userQuestions}  \n
-## GitHub username:  \n
-${response.userGithub}`;
+${userTests}  \n
+## Questions?  \n
+GitHub username: ${userGithub}  \n
+GitHub e-mail: ${response.data.email}  \n
+![GitHub Profile Pic](${response.data.avatar_url})`;
 
-        writeFileAsync("NEW-README.md", renderReadME).then(err => err ? console.log(err) : console.log("Successfly created new ReadME!"));
-
+                writeFileAsync("NEW-README.md", renderReadME).then(err => err ? console.log(err) : console.log("Successfly created new ReadME!"));
     });
+});

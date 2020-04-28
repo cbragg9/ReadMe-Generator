@@ -1,39 +1,37 @@
-# Project Title:  
-
-title  
+# Project Title: Title  
 
 ## Project Description:  
 
-description  
+Description  
 
 ## Table of Contents:  
 
-toc  
+TOC  
 
 ## Installation:  
 
-installation  
+Installation  
 
 ## Usage:  
 
-usage  
+Usage  
 
 ## License:  
 
-license  
+License  
 
-## Contributing:  
+## Contributing Users:  
 
-contributing  
+Contributing  
 
 ## Tests:  
 
-tests  
+Tests  
 
-## Questions:  
+## Questions?  
 
-questions  
+GitHub username: cbragg9  
 
-## GitHub username:  
+GitHub e-mail: null  
 
-cbragg9
+![GitHub Profile Pic](https://avatars2.githubusercontent.com/u/60023778?v=4)
