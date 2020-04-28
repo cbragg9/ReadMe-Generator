@@ -1,6 +1,7 @@
-var inquirer = require("inquirer");
+const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
+const outdent = require('outdent');
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -8,12 +9,12 @@ inquirer
     .prompt([
         {
             type: "input",
-            message: "What is your Project Title?",
+            message: "What is your Project's Title?",
             name: "userTitle"
         },
         {
             type: "input",
-            message: "What is your Project Description?",
+            message: "What is your Project's Description?",
             name: "userDescription"
         },
         {
@@ -23,7 +24,7 @@ inquirer
         },
         {
             type: "input",
-            message: "What are your installation instructions?",
+            message: "What are your installation requirements and instructions?",
             name: "userInstallation"
         },
         {
@@ -52,7 +53,7 @@ inquirer
             name: "userGithub"
         },
     ])
-    .then(function (response) {
+    .then(response => {
         const userGithub = response.userGithub;
         const userTitle = response.userTitle;
         const userDescription = response.userDescription;
@@ -65,29 +66,34 @@ inquirer
 
         axios
             .get(`https://api.github.com/users/${userGithub}`)
-            .then(function (response) {
+            .then(response => {
+                let userEmail = "";
+                response.data.email === null ? userEmail = "No e-mail found" : userEmail = response.data.email;
 
-                let renderReadME = 
-`# Project Title: ${userTitle}  \n
-## Project Description:  \n
-${userDescription}  \n
-## Table of Contents:  \n
-${userTOC}  \n
-## Installation:  \n
-${userInstallation}  \n
-## Usage:  \n
-${userUsage}  \n
-## License:  \n
-${userLicense}  \n
-## Contributing Users:  \n
-${userContributing}  \n
-## Tests:  \n
-${userTests}  \n
-## Questions?  \n
-GitHub username: ${userGithub}  \n
-GitHub e-mail: ${response.data.email}  \n
-![GitHub Profile Pic](${response.data.avatar_url})`;
+                let userPicture = "";
+                response.data.avatar_url === null ? userPicture = "No profile pic found" : userPicture = response.data.avatar_url;
 
-                writeFileAsync("NEW-README.md", renderReadME).then(err => err ? console.log(err) : console.log("Successfly created new ReadME!"));
+                let renderReadME = outdent`
+                    # Project Title: ${userTitle}  \n
+                    ## Project Description:  \n 
+                    ${userDescription}  \n
+                    ## Table of Contents:  \n
+                    ${userTOC}  \n
+                    ## Installation:  \n
+                    ${userInstallation}  \n
+                    ## Usage:  \n
+                    ${userUsage}  \n
+                    ## License:  \n
+                    ${userLicense}  \n
+                    ## Contributing Users:  \n
+                    ${userContributing}  \n
+                    ## Tests:  \n
+                    ${userTests}  \n
+                    ## Questions?  \n
+                    GitHub username: ${userGithub} \n
+                    GitHub e-mail: ${userEmail} \n
+                    ![GitHub Profile Pic](${userPicture}&s=100)`;
+
+                writeFileAsync("NEW-README.md", renderReadME).then(err => err ? console.log(err) : console.log("Successfly created NEW-README.md!"));
+            });
     });
-});

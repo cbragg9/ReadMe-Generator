@@ -1,37 +1,37 @@
-# Project Title: Title  
+# Project Title: Example Title  
 
 ## Project Description:  
 
-Description  
+Example Description  
 
 ## Table of Contents:  
 
-TOC  
+Example ToC  
 
 ## Installation:  
 
-Installation  
+Example Installation  
 
 ## Usage:  
 
-Usage  
+Example Usage  
 
 ## License:  
 
-License  
+Example License  
 
 ## Contributing Users:  
 
-Contributing  
+Example Contributing Users  
 
 ## Tests:  
 
-Tests  
+Example Tests  
 
 ## Questions?  
 
-GitHub username: cbragg9  
+GitHub username: cbragg9 
 
-GitHub e-mail: null  
+GitHub e-mail: No e-mail found 
 
-![GitHub Profile Pic](https://avatars2.githubusercontent.com/u/60023778?v=4)
+![GitHub Profile Pic](https://avatars2.githubusercontent.com/u/60023778?v=4&s=100)
