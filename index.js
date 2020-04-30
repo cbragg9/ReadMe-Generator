@@ -9,18 +9,23 @@ inquirer
     .prompt([
         {
             type: "input",
+            message: "What is your GitHub username?",
+            name: "userGithub"
+        },
+        {
+            type: "input",
+            message: "What is your e-mail?",
+            name: "userEmail"
+        },
+        {
+            type: "input",
             message: "What is your Project's Title?",
             name: "userTitle"
         },
         {
             type: "input",
-            message: "What is your Project's Description?",
+            message: "Please write a short description of your project",
             name: "userDescription"
-        },
-        {
-            type: "input",
-            message: "What is your Table of Contents?",
-            name: "userTOC"
         },
         {
             type: "input",
@@ -33,59 +38,57 @@ inquirer
             name: "userUsage"
         },
         {
-            type: "input",
+            type: "list",
             message: "What is your License information?",
+            choices: ["MIT", "APACHE", "GPL 3.0", "BSD 3", "None"],
             name: "userLicense"
         },
         {
             type: "input",
-            message: "Contributing users?",
+            message: "What does the user need to know about contributing to the repo?",
             name: "userContributing"
         },
         {
             type: "input",
-            message: "What is your Tests?",
+            message: "What command should be run to run tests?",
             name: "userTests"
-        },
-        {
-            type: "input",
-            message: "What is your GitHub username?",
-            name: "userGithub"
         },
     ])
     .then(response => {
-        const userGithub = response.userGithub;
-        const userTitle = response.userTitle;
-        const userDescription = response.userDescription;
-        const userTOC = response.userTOC;
-        const userInstallation = response.userInstallation;
-        const userUsage = response.userUsage;
-        const userLicense = response.userLicense;
-        const userContributing = response.userContributing;
-        const userTests = response.userTests;
+        const { userGithub,
+            userEmail,
+            userTitle,
+            userDescription,
+            userInstallation,
+            userUsage,
+            userLicense,
+            userContributing,
+            userTests } = response;
 
         axios
             .get(`https://api.github.com/users/${userGithub}`)
             .then(response => {
-                let userEmail = "";
-                response.data.email === null ? userEmail = "No e-mail found" : userEmail = response.data.email;
-
                 let userPicture = "";
                 response.data.avatar_url === null ? userPicture = "No profile pic found" : userPicture = response.data.avatar_url;
 
                 let renderReadME = outdent`
-                    # Project Title: ${userTitle}  \n
-                    ## Project Description:  \n 
+                    # ${userTitle}  \n
+                    ## Project Description:  \n
                     ${userDescription}  \n
                     ## Table of Contents:  \n
-                    ${userTOC}  \n
+                    * [Installation](##Installation)  \n
+                    * [Usage](##Usage)  \n
+                    * [License](##License)  \n
+                    * [Contributing](##Contributing) \n
+                    * [Tests](##Tests)  \n
+                    * [Questions](##Questions?)  \n
                     ## Installation:  \n
                     ${userInstallation}  \n
                     ## Usage:  \n
                     ${userUsage}  \n
                     ## License:  \n
                     ${userLicense}  \n
-                    ## Contributing Users:  \n
+                    ## Contributing:  \n
                     ${userContributing}  \n
                     ## Tests:  \n
                     ${userTests}  \n

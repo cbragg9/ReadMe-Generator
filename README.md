@@ -1,11 +1,41 @@
 # ReadMe-Generator  
+Description: ReadMe-Generator is a command line application using node.js and inquirer to  
+quickly create a NEW-README.md file for your GitHub projects (requires GitHub username).  
+Initialize the application with the code below, with prompts for user input for each section.
+
+```sh
+node index.js
+```
+Prompts:  
+* Project title  
+* Description  
+* Table of Contents  
+* Installation  
+* Usage  
+* License  
+* Contributing  
+* Tests  
+* Questions?   
+  * User GitHub username  
+  * User GitHub email
+  * User GitHub profile picture   
+
+User Story:  
+GIVEN the developer has a GitHub profile and a repository  
+
+WHEN prompted for the developer's GitHub username and repo specific information  
+
+THEN a README for the repo is generated  
 
 # Latest commit:  
+-Deconstructed response vars  
+-Modified questions and NEW-README.md template  
+-Updated project README.md   
+
+# Previous commits:  
 -Added error handlers for null Github API responses  
 -Resized markdown profile pic  
 -Added/required in "outdent" npm dependency for removing whitespace when using template literals   
-
-# Previous commits:  
 -Added axios npm as dependency  
 -Required in axios with GET call to GitHub API  
 -Added API profile pic and email to new ReadME  
