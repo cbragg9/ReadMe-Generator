@@ -28,11 +28,15 @@ WHEN prompted for the developer's GitHub username and repo specific information
 THEN a README for the repo is generated  
 
 # Latest commit:  
+-Removed project requirements  
+-Installed two new dependencies, badge-maker and camelcase  
+-Required in badge-maker for creating License badge   
+-Added shields.io functionality to create badge  
+
+# Previous commits:  
 -Deconstructed response vars  
 -Modified questions and NEW-README.md template  
 -Updated project README.md   
-
-# Previous commits:  
 -Added error handlers for null Github API responses  
 -Resized markdown profile pic  
 -Added/required in "outdent" npm dependency for removing whitespace when using template literals   

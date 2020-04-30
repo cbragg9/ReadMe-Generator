@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 const outdent = require('outdent');
+const { makeBadge } = require('badge-maker')
 const util = require("util");
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -55,6 +56,8 @@ inquirer
         },
     ])
     .then(response => {
+
+        // Deconstructed response variables
         const { userGithub,
             userEmail,
             userTitle,
@@ -63,8 +66,20 @@ inquirer
             userUsage,
             userLicense,
             userContributing,
-            userTests } = response;
+            userTests 
+        } = response;
 
+        // Shields.IO badge creator
+        const format = {
+            label: 'license',
+            message: `${userLicense}`,
+            color: 'blue',
+        }
+
+        // Create new badge function 
+        const badge = makeBadge(format)
+
+        // Axios GET to GitHub for profile pic
         axios
             .get(`https://api.github.com/users/${userGithub}`)
             .then(response => {
@@ -87,7 +102,7 @@ inquirer
                     ## Usage:  \n
                     ${userUsage}  \n
                     ## License:  \n
-                    ${userLicense}  \n
+                    ${badge}  \n
                     ## Contributing:  \n
                     ${userContributing}  \n
                     ## Tests:  \n
