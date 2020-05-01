@@ -20,7 +20,7 @@ Example Description
 
 ## Installation:  
 
-Example Installation Guide  
+Example Installation Instructions  
 
 ## Usage:  
 
@@ -32,7 +32,7 @@ Example Usage Instructions
 
 ## Contributing:  
 
-Example Instructions for Contributing  
+Example Contributing Information  
 
 ## Tests:  
 

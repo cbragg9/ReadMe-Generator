@@ -1,5 +1,7 @@
-# ReadMe-Generator  
-Description: ReadMe-Generator is a command line application using node.js and inquirer to  
+# ReadMe-Generator (Node.JS)  
+## Description:  
+
+ReadMe-Generator is a command line application using **JavaScript ES6**, **node.js**, **inquirer** to  
 quickly create a NEW-README.md file for your GitHub projects (requires GitHub username).  
 Initialize the application with the code below, with prompts for user input for each section.
 
@@ -20,20 +22,25 @@ Prompts:
   * User GitHub email
   * User GitHub profile picture   
 
-User Story:  
+## User Story:  
 GIVEN the developer has a GitHub profile and a repository  
 
 WHEN prompted for the developer's GitHub username and repo specific information  
 
 THEN a README for the repo is generated  
 
-# Latest commit:  
+## Example NEW-README:  
+![Example NEW-README.md](./example_readme.JPG)
+
+## Latest commit:  
+-Updated readme   
+-Added video and screenshot of working project  
+
+## Previous commits:  
 -Removed project requirements  
 -Installed two new dependencies, badge-maker and camelcase  
 -Required in badge-maker for creating License badge   
 -Added shields.io functionality to create badge  
-
-# Previous commits:  
 -Deconstructed response vars  
 -Modified questions and NEW-README.md template  
 -Updated project README.md   
