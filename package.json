@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/cbragg9/ReadMe-Generator#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "badge-maker": "^3.0.0-rc1",
     "camelcase": "^6.0.0",
     "inquirer": "^7.1.0",
